@@ -1,0 +1,86 @@
+{
+  "job": {
+    "job_id": "JOB-001",
+    "title": "Senior AI Search Engineer",
+    "description": "Build production candidate discovery systems using Python, semantic search, NLP, retrieval augmented generation, APIs, PostgreSQL, and cloud deployment. Improve ranking quality and latency with measurable experiments.",
+    "required_skills": ["Python", "Semantic Search", "NLP", "PostgreSQL", "AWS"],
+    "preferred_skills": ["RAG", "FastAPI", "Docker", "Kubernetes"],
+    "min_years_experience": 4,
+    "preferred_years_experience": 6,
+    "locations": ["Bengaluru", "Remote"],
+    "remote_allowed": true
+  },
+  "candidates": [
+    {
+      "candidate_id": "C-101",
+      "name": "Aarav Mehta",
+      "email": "demo-aarav@example.invalid",
+      "phone": "0000000000",
+      "headline": "AI search engineer building retrieval systems",
+      "summary": "Designed semantic search and RAG services for a job marketplace. Shipped Python APIs backed by PostgreSQL on AWS and improved search relevance through offline evaluation.",
+      "skills": ["Python", "Semantic Search", "NLP", "Postgres", "AWS", "RAG", "FastAPI", "Docker"],
+      "roles": ["AI Search Engineer", "Machine Learning Engineer"],
+      "years_experience": 6,
+      "location": "Bengaluru",
+      "open_to_remote": true,
+      "activity": {"profile_completeness": 0.98, "response_rate": 0.91, "active_days_ago": 4}
+    },
+    {
+      "candidate_id": "C-102",
+      "name": "Diya Nair",
+      "email": "demo-diya@example.invalid",
+      "phone": "0000000000",
+      "headline": "ML engineer focused on NLP platforms",
+      "summary": "Built Python NLP pipelines, LLM evaluation tooling, and Kubernetes services on AWS. Worked with vector databases and API-based product integrations.",
+      "skills": ["Python", "NLP", "AWS", "Kubernetes", "Docker", "Vector Database", "LLM"],
+      "roles": ["Machine Learning Engineer", "NLP Engineer"],
+      "years_experience": 5,
+      "location": "Hyderabad",
+      "open_to_remote": true,
+      "activity": {"profile_completeness": 0.93, "response_rate": 0.88, "active_days_ago": 10}
+    },
+    {
+      "candidate_id": "C-103",
+      "name": "Kabir Singh",
+      "email": "demo-kabir@example.invalid",
+      "phone": "0000000000",
+      "headline": "Backend Python developer",
+      "summary": "Developed REST APIs and PostgreSQL services for ecommerce products. Deployed Docker applications to AWS and maintained CI CD pipelines.",
+      "skills": ["Python", "PostgreSQL", "AWS", "Docker", "CI/CD"],
+      "roles": ["Backend Engineer", "Software Engineer"],
+      "years_experience": 7,
+      "location": "Pune",
+      "open_to_remote": true,
+      "activity": {"profile_completeness": 0.89, "response_rate": 0.81, "active_days_ago": 16}
+    },
+    {
+      "candidate_id": "C-104",
+      "name": "Meera Rao",
+      "email": "demo-meera@example.invalid",
+      "phone": "0000000000",
+      "headline": "Frontend engineer and design systems specialist",
+      "summary": "Creates accessible interfaces with React and TypeScript. Led UI platform migrations and component library adoption.",
+      "skills": ["React", "TypeScript", "CSS", "Design Systems"],
+      "roles": ["Frontend Engineer", "UI Engineer"],
+      "years_experience": 6,
+      "location": "Bengaluru",
+      "open_to_remote": true,
+      "activity": {"profile_completeness": 0.96, "response_rate": 0.95, "active_days_ago": 2}
+    },
+    {
+      "candidate_id": "C-105",
+      "name": "Rohan Iyer",
+      "email": "demo-rohan@example.invalid",
+      "phone": "0000000000",
+      "headline": "Data scientist researching information retrieval",
+      "summary": "Built NLP ranking experiments in Python and evaluated semantic search models. Familiar with PostgreSQL, AWS, FastAPI, and retrieval augmented generation prototypes.",
+      "skills": ["Python", "NLP", "Semantic Search", "PostgreSQL", "AWS", "FastAPI", "RAG"],
+      "roles": ["Data Scientist", "Search Researcher"],
+      "years_experience": 4.5,
+      "location": "Chennai",
+      "open_to_remote": true,
+      "activity": {"profile_completeness": 0.9, "response_rate": 0.76, "active_days_ago": 21}
+    }
+  ]
+}
+

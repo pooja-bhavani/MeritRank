@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MeritRank | Recruiter Workspace</title>
+  <style>
+    :root{color-scheme:dark;--panel:#101f35;--muted:#a9bbd2;--line:#29415f;--green:#57e2a3;--blue:#7cbbff;--red:#ff9b9b;--yellow:#f6d178}
+    *{box-sizing:border-box}body{margin:0;font:14px/1.5 Inter,system-ui,sans-serif;background:linear-gradient(140deg,#06101d,#0d1a2c);color:#f5f8ff}
+    main{max-width:1240px;margin:auto;padding:28px 20px 56px}header{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:20px}
+    h1{font-size:32px;margin:0}h2{font-size:19px;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}p{margin:5px 0;color:var(--muted)}
+    .badge,.chip{display:inline-block;padding:4px 9px;margin:3px 4px 3px 0;border-radius:99px;font-size:12px;background:#1a3556;color:#dcecff}.badge{color:var(--green);border:1px solid #286156}
+    .layout{display:grid;grid-template-columns:380px 1fr;gap:16px}.stack{display:grid;gap:16px}.card{background:#101f35e8;border:1px solid var(--line);border-radius:14px;padding:17px;box-shadow:0 16px 38px #0003}.subtle{background:#132641}
+    label{display:block;color:#dce8f8;font-weight:700;font-size:12px;margin:10px 0 4px}input,textarea,select{width:100%;border:1px solid #355174;border-radius:8px;background:#091728;color:#f6f9ff;padding:10px;font:inherit}textarea{min-height:84px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:9px}.check{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--muted)}.check input{width:auto}
+    button,.button{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 14px;background:var(--green);color:#082339;font-weight:800;text-decoration:none}.secondary{background:#244365;color:#eef6ff}.wide{width:100%;margin-top:14px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#142742;border:1px solid var(--line);padding:12px;border-radius:10px}.stat strong{font-size:23px;display:block;color:var(--blue)}
+    .candidate{display:grid;grid-template-columns:45px 1fr 70px;gap:12px;padding:15px 0;border-top:1px solid var(--line)}.rank{font-size:23px;color:var(--blue)}.score{font-size:20px;text-align:right;color:var(--green)}
+    .reason{color:var(--muted);font-size:13px;margin-top:5px}.gap{color:var(--red);font-size:13px}.notice{color:var(--yellow);font-size:13px}.ok{color:var(--green)}.error{color:var(--red)}.analysis{grid-column:2/4;margin-top:6px;padding:11px;border-radius:9px;background:#0a192b;border:1px solid #233d5e}.analysis ul{margin:7px 0 0;padding-left:18px;color:var(--muted)}.analysis strong{color:var(--yellow)}
+    .toolbar{display:flex;gap:9px;justify-content:space-between;align-items:center}.empty{padding:18px 0;color:var(--muted)}.bars{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 12px;margin-top:8px}.bar{font-size:12px;color:var(--muted)}.bar b{color:var(--blue)}.recommendation{display:inline-block;margin-left:7px;padding:2px 7px;border-radius:99px;background:#173451;color:var(--green);font-size:11px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.metric{padding:9px;border-radius:8px;background:#0a192b;border:1px solid #233d5e}.metric strong{display:block;color:var(--blue);font-size:18px}.compare{margin-top:8px;font-size:12px;color:var(--blue)}.compare input{width:auto}.comparison{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.comparison div{padding:9px;border:1px solid #233d5e;border-radius:8px;background:#0a192b}
+    @media(max-width:900px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:1fr}header{display:block}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div><span class="badge">Persistent recruiter workspace</span><h1>MeritRank</h1><p>Explainable candidate discovery beyond keyword filters.</p></div><p id="analysis-mode">Checking analysis mode...</p></header>
+  <div class="layout">
+    <aside class="stack">
+      <section class="card">
+        <h2>1. Create a job</h2>
+        <form id="job-form">
+          <label>Job title</label><input name="title" required placeholder="Senior AI Search Engineer">
+          <label>Company</label><input name="company" placeholder="Company name">
+          <label>JD source URL <span class="notice">(optional traceability link)</span></label><input name="source_url" type="url" placeholder="https://www.linkedin.com/jobs/view/...">
+          <label>Description</label><textarea name="description" required placeholder="Describe responsibilities and success criteria"></textarea>
+          <label>Required skills <span class="notice">(optional, inferred from JD when blank)</span></label><input name="required_skills" placeholder="Python, Semantic Search, NLP">
+          <label>Preferred skills <span class="notice">(comma-separated)</span></label><input name="preferred_skills" placeholder="FastAPI, Docker, Kubernetes">
+          <div class="row"><div><label>Minimum years</label><input name="min_years_experience" type="number" min="0" step="0.5" value="0"></div><div><label>Preferred years</label><input name="preferred_years_experience" type="number" min="0" step="0.5" value="0"></div></div>
+          <label>Locations <span class="notice">(comma-separated)</span></label><input name="locations" placeholder="Bengaluru, Remote">
+          <label class="check"><input name="remote_allowed" type="checkbox"> Allow remote candidates</label>
+          <button class="wide">Save job</button>
+        </form><p id="job-message"></p>
+      </section>
+      <section class="card">
+        <h2>2. Upload resumes</h2><p>Upload PDF, TXT, or MD resumes individually. Text extraction and profile storage happen locally.</p>
+        <label>Resume file</label><input id="resume-file" type="file" accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown">
+        <button id="resume-import" class="wide">Parse and add resume</button><p id="resume-message"></p>
+      </section>
+      <section class="card">
+        <h2>Bulk candidate import</h2><p>For larger candidate pools, upload a structured CSV.</p>
+        <label>Candidate CSV</label><input id="candidate-file" type="file" accept=".csv,text/csv">
+        <button id="import" class="wide secondary">Import CSV</button><p id="import-message"></p>
+        <p><a class="button secondary" href="/template.csv" download>Download CSV template</a></p>
+      </section>
+    </aside>
+    <section class="stack">
+      <div class="stats"><div class="stat"><strong id="job-count">0</strong><span>saved jobs</span></div><div class="stat"><strong id="candidate-count">0</strong><span>candidate profiles</span></div><div class="stat"><strong id="run-count">0</strong><span>ranking runs</span></div></div>
+      <section class="card"><h2>3. Rank candidates</h2><p>Select a saved job and generate an explainable shortlist.</p><div class="row"><select id="job-select"><option value="">Create a job first</option></select><button id="rank">Run ranking</button></div><p id="rank-message"></p></section>
+      <section class="card"><h2>Offline evaluation</h2><p>Upload relevance labels from the official dataset to measure ranking quality honestly.</p><div class="row"><input id="labels-file" type="file" accept=".csv,text/csv"><button id="evaluate" class="secondary">Evaluate latest run</button></div><p><a class="button secondary" href="/evaluation-template.csv" download>Download labels template</a></p><p id="evaluation-message"></p><div id="metrics"></div></section>
+      <section class="card"><h2>Stored candidates</h2><p id="candidate-summary">No candidate profiles uploaded yet.</p><div id="candidate-list"></div></section>
+      <section class="card"><h2>Candidate comparison</h2><p>Select up to two shortlist candidates to compare evidence side by side.</p><div id="comparison" class="empty">No candidates selected.</div></section>
+      <section class="card"><div class="toolbar"><div><h2>Ranked shortlist</h2><p id="run-summary">No ranking run selected.</p></div><a id="export" class="button secondary" hidden>Export CSV</a></div><div class="row"><input id="candidate-search" placeholder="Search candidates or skills"><select id="recommendation-filter"><option value="">All recommendations</option><option>Shortlist</option><option>Review</option><option>Hold</option></select></div><div id="shortlist" class="empty">Create a job, import candidate profiles, and run ranking.</div></section>
+      <section class="card subtle"><h2>How decisions are made</h2><p>MeritRank uses profile relevance, required and preferred skill coverage, role similarity, experience fit, bounded activity signals, and location preference. Names, emails, and phone numbers are excluded from scoring.</p></section>
+    </section>
+  </div>
+</main>
+<script>
+  const $=selector=>document.querySelector(selector), split=value=>value.split(',').map(item=>item.trim()).filter(Boolean);
+  let latestRun=null,compareIds=new Set();
+  const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const message=(selector,text,kind='ok')=>{const node=$(selector);node.textContent=text;node.className=kind};
+  async function api(url,options={}){const response=await fetch(url,{headers:{'Content-Type':'application/json'},...options});const data=await response.json();if(!response.ok)throw new Error(data.error||'Request failed');return data}
+  async function refresh(){const [jobs,candidates,runs,analysis]=await Promise.all([api('/jobs'),api('/candidates'),api('/runs'),api('/analysis/status')]);$('#job-count').textContent=jobs.jobs.length;$('#candidate-count').textContent=candidates.candidates.length;$('#run-count').textContent=runs.runs.length;$('#analysis-mode').textContent=analysis.notice;$('#analysis-mode').className=analysis.enabled?'ok':'notice';$('#job-select').innerHTML=jobs.jobs.length?jobs.jobs.map(job=>`<option value="${esc(job.job_id)}">${esc(job.company?job.company+' · ':'')}${esc(job.title)} (${esc(job.job_id)})</option>`).join(''):'<option value="">Create a job first</option>';renderCandidates(candidates.candidates);if(runs.runs.length)renderRun(runs.runs[0])}
+  function renderCandidates(candidates){$('#candidate-summary').textContent=candidates.length?`${candidates.length} profile${candidates.length===1?'':'s'} ready for ranking.`:'No candidate profiles uploaded yet.';$('#candidate-list').innerHTML=candidates.map(candidate=>`<div class="reason"><strong>${esc(candidate.name||candidate.candidate_id)}</strong> · ${esc(candidate.source_file||'CSV import')} · ${candidate.skills.length} detected skills</div>`).join('')}
+  function renderRun(run){latestRun=run;compareIds=new Set();$('#run-summary').textContent=`${run.job_title} · ${run.candidate_count} candidates · ${run.latency_ms??'legacy'} ms · ${new Date(run.created_at).toLocaleString()}`;$('#export').hidden=false;$('#export').href=`/runs/${run.run_id}/export.csv`;renderMetrics(run.evaluation);renderShortlist();renderComparison()}
+  function renderShortlist(){if(!latestRun)return;const query=$('#candidate-search').value.toLowerCase(),filter=$('#recommendation-filter').value;const candidates=latestRun.shortlist.filter(c=>(!filter||c.recommendation===filter)&&(!query||JSON.stringify(c).toLowerCase().includes(query)));$('#shortlist').className=candidates.length?'':'empty';$('#shortlist').innerHTML=candidates.length?candidates.map(candidateCard).join(''):'No candidates match this filter.'}
+  function candidateCard(c){const missing=c.missing_job_keywords||[],suggestions=c.improvement_suggestions||[],ai=c.ai_analysis,points=c.contributions||{};return `<article class="candidate"><div class="rank">#${c.rank}</div><div><h3>${esc(c.display_name||c.candidate_id)} <span class="recommendation">${esc(c.recommendation||'Review')}</span></h3><div>${c.matched_required_skills.map(skill=>`<span class="chip">${esc(skill)}</span>`).join('')}</div>${c.missing_required_skills.length?`<div class="gap">Missing required: ${esc(c.missing_required_skills.join(', '))}</div>`:''}<div class="reason">${esc(c.evidence_summary||c.reasons.join(' · '))}</div><div class="bars">${Object.entries(points).map(([key,value])=>`<div class="bar">${esc(key.replaceAll('_',' '))}: <b>+${value}</b></div>`).join('')}</div><label class="compare"><input type="checkbox" data-compare="${esc(c.candidate_id)}" ${compareIds.has(c.candidate_id)?'checked':''}> Compare candidate</label></div><div class="score">${c.score}</div><div class="analysis"><strong>ATS keyword coverage: ${c.keyword_coverage??'Run ranking again'}%</strong>${missing.length?`<div class="gap">Missing JD keywords: ${esc(missing.join(', '))}</div>`:'<div class="ok">No tracked job-description keyword gaps detected.</div>'}${suggestions.length?`<ul>${suggestions.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:''}${ai?`<h3>LLM evidence review</h3>${ai.error?`<div class="gap">${esc(ai.error)}</div>`:`<p>${esc(ai.summary||'')}</p><ul>${(ai.improvements||[]).map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`}`:'<p class="notice">LLM review is limited to the top five candidates in each run.</p>'}</div></article>`}
+  function renderComparison(){const selected=latestRun?latestRun.shortlist.filter(c=>compareIds.has(c.candidate_id)):[];$('#comparison').className=selected.length?'comparison':'empty';$('#comparison').innerHTML=selected.length?selected.map(c=>`<div><h3>${esc(c.display_name)}</h3><strong>${c.score} · ${esc(c.recommendation)}</strong><p>${esc(c.evidence_summary)}</p><p class="gap">${esc((c.missing_job_keywords||[]).join(', ')||'No tracked keyword gaps')}</p></div>`).join(''):'No candidates selected.'}
+  function renderMetrics(metrics){$('#metrics').innerHTML=metrics?`<div class="metrics"><div class="metric"><strong>${metrics.ndcg_at_k}</strong>NDCG@${metrics.k}</div><div class="metric"><strong>${metrics.precision_at_k}</strong>Precision@${metrics.k}</div><div class="metric"><strong>${metrics.recall_at_k}</strong>Recall@${metrics.k}</div><div class="metric"><strong>${metrics.mrr}</strong>MRR</div></div>`:''}
+  $('#job-form').onsubmit=async event=>{event.preventDefault();const form=new FormData(event.target);try{await api('/jobs',{method:'POST',body:JSON.stringify({title:form.get('title'),company:form.get('company'),source_url:form.get('source_url'),description:form.get('description'),required_skills:split(form.get('required_skills')),preferred_skills:split(form.get('preferred_skills')),min_years_experience:Number(form.get('min_years_experience')),preferred_years_experience:Number(form.get('preferred_years_experience')),locations:split(form.get('locations')),remote_allowed:form.get('remote_allowed')==='on'})});message('#job-message','Job saved.');await refresh()}catch(error){message('#job-message',error.message,'error')}};
+  const asBase64=file=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result.split(',')[1]);reader.onerror=()=>reject(new Error('Could not read this file'));reader.readAsDataURL(file)});
+  $('#resume-file').onchange=()=>{const file=$('#resume-file').files[0];message('#resume-message',file?`${file.name} is ready. Click Parse and add resume.`:'Choose a PDF, TXT, or MD resume first.',file?'ok':'error')};
+  $('#resume-import').onclick=async()=>{const file=$('#resume-file').files[0];if(!file){message('#resume-message','Choose a PDF, TXT, or MD resume first.','error');return}try{message('#resume-message','Extracting resume text locally...');const result=await api('/resumes/import',{method:'POST',body:JSON.stringify({filename:file.name,content_base64:await asBase64(file)})});message('#resume-message',result.duplicate?`${result.candidate.name} was already stored. Duplicate upload skipped.`:`Added ${result.candidate.name}. Detected ${result.candidate.skills.length} skills. Review parsing before making hiring decisions.`);$('#resume-file').value='';await refresh()}catch(error){message('#resume-message',error.message,'error')}};
+  $('#import').onclick=async()=>{const file=$('#candidate-file').files[0];if(!file){message('#import-message','Choose a CSV file first.','error');return}try{const result=await api('/candidates/import',{method:'POST',body:JSON.stringify({csv_text:await file.text()})});message('#import-message',`Imported ${result.imported} candidates. ${result.total} stored in total.`);await refresh()}catch(error){message('#import-message',error.message,'error')}};
+  $('#rank').onclick=async()=>{const job_id=$('#job-select').value;if(!job_id){message('#rank-message','Create a job first.','error');return}try{const result=await api('/runs',{method:'POST',body:JSON.stringify({job_id})});message('#rank-message','Ranking complete.');renderRun(result.run);await refresh()}catch(error){message('#rank-message',error.message,'error')}};
+  $('#evaluate').onclick=async()=>{const file=$('#labels-file').files[0];if(!latestRun){message('#evaluation-message','Run ranking first.','error');return}if(!file){message('#evaluation-message','Choose a labels CSV first.','error');return}try{const result=await api(`/runs/${latestRun.run_id}/evaluate`,{method:'POST',body:JSON.stringify({labels_csv:await file.text()})});message('#evaluation-message','Evaluation saved.');latestRun.evaluation=result.evaluation;renderMetrics(result.evaluation)}catch(error){message('#evaluation-message',error.message,'error')}};
+  $('#candidate-search').oninput=renderShortlist;$('#recommendation-filter').onchange=renderShortlist;
+  $('#shortlist').onchange=event=>{const id=event.target.dataset.compare;if(!id)return;if(event.target.checked&&compareIds.size>=2){event.target.checked=false;return}event.target.checked?compareIds.add(id):compareIds.delete(id);renderComparison()};
+  refresh().catch(error=>message('#rank-message',error.message,'error'));
+</script>
+</body>
+</html>

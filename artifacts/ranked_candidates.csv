@@ -1,0 +1,6 @@
+rank,candidate_id,display_name,score,matched_required,missing_required
+1,C-101,Aarav Mehta,91.26,aws|nlp|postgresql|python|semantic search,
+2,C-105,Rohan Iyer,86.26,aws|nlp|postgresql|python|semantic search,
+3,C-102,Diya Nair,39.92,aws|nlp|python,postgresql|semantic search
+4,C-103,Kabir Singh,35.88,aws|postgresql|python,nlp|semantic search
+5,C-104,Meera Rao,0.0,,aws|nlp|postgresql|python|semantic search

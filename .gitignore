@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+data/app_state.json
+.DS_Store

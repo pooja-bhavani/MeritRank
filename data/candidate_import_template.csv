@@ -1,0 +1,2 @@
+candidate_id,name,email,phone,headline,summary,skills,roles,years_experience,location,open_to_remote,profile_completeness,response_rate,active_days_ago
+C-001,Example Candidate,example@example.com,0000000000,AI search engineer,Describe real work and outcomes here,Python|Semantic Search|NLP,Search Engineer|ML Engineer,5,Bengaluru,true,0.9,0.8,14
