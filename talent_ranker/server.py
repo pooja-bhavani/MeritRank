@@ -1,6 +1,7 @@
 import json
 import csv
 import io
+import os
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -14,7 +15,7 @@ from .ai_analyzer import status
 ROOT = Path(__file__).resolve().parent.parent
 DEMO_PATH = ROOT / "data" / "demo_request.json"
 INDEX_PATH = ROOT / "static" / "index.html"
-STATE_PATH = ROOT / "data" / "app_state.json"
+STATE_PATH = Path(os.getenv("MERITRANK_STATE_PATH", ROOT / "data" / "app_state.json"))
 TEMPLATE_PATH = ROOT / "data" / "candidate_import_template.csv"
 LABELS_TEMPLATE_PATH = ROOT / "data" / "evaluation_labels_template.csv"
 store = Store(STATE_PATH)
@@ -137,8 +138,9 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main() -> None:
-    server = ThreadingHTTPServer(("127.0.0.1", 8000), Handler)
-    print("MeritRank dashboard: http://127.0.0.1:8000")
+    port = int(os.getenv("MERITRANK_PORT", "8000"))
+    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    print(f"MeritRank dashboard: http://127.0.0.1:{port}")
     server.serve_forever()
 
 

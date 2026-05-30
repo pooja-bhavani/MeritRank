@@ -28,6 +28,19 @@ machine. This is a working application, not a UI mock.
   challenge submission.
 - Includes transparent synthetic demo data and automated tests.
 
+## Screenshots
+
+The screenshots below use the included synthetic profiles. No uploaded resume
+or private candidate data is committed to the repository.
+
+### Recruiter workspace
+
+![MeritRank recruiter workspace](docs/images/recruiter-workspace.jpg)
+
+### Explainable ranked shortlist
+
+![MeritRank explainable ranked shortlist](docs/images/ranked-shortlist.jpg)
+
 ## Run the demo
 
 ```bash
@@ -161,6 +174,7 @@ scripts/run_local_ai.sh   free local Ollama launcher
 static/index.html         recruiter workspace
 tests/                    unit and integration tests
 docs/                     architecture, submission guide, article draft
+docs/images/              privacy-safe synthetic product screenshots
 ```
 
 ## Honest limitations and next steps
