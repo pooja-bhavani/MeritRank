@@ -28,11 +28,6 @@ machine. This is a working application, not a UI mock.
   challenge submission.
 - Includes transparent synthetic demo data and automated tests.
 
-## Screenshots
-
-The screenshots below use the included synthetic profiles. No uploaded resume
-or private candidate data is committed to the repository.
-
 ### Recruiter workspace
 
 ![MeritRank recruiter workspace](docs/images/recruiter-workspace.jpg)
