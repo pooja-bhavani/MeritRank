@@ -57,6 +57,11 @@ python3 -m talent_ranker.server
 
 Then open [http://localhost:8000](http://localhost:8000).
 
+<img width="1470" height="956" alt="Screenshot 2026-05-30 at 2 57 26 PM" src="https://github.com/user-attachments/assets/08053e25-fb39-48c3-968d-da8bcf037672" />
+
+<img width="1470" height="956" alt="Screenshot 2026-05-30 at 3 05 06 PM" src="https://github.com/user-attachments/assets/88ddc7a9-b210-4436-8d4f-a74c2b2e26dd" />
+
+
 The browser workspace is persistent across refreshes. It supports:
 
 1. Creating real job descriptions and role requirements.
