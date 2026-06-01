@@ -59,7 +59,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 
 <img width="1468" height="885" alt="image" src="https://github.com/user-attachments/assets/b7c12b70-a2e6-4b28-b7da-ad0d8fb219d2" />
 
-<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/394263b1-ec23-4779-9751-194f0e4389e5" />
+<img width="1470" height="884" alt="image" src="https://github.com/user-attachments/assets/7bd033f0-77e9-45c8-9afc-9b4a7ca5abe0" />
 
 
 The browser workspace is persistent across refreshes. It supports:
