@@ -57,9 +57,9 @@ python3 -m talent_ranker.server
 
 Then open [http://localhost:8000](http://localhost:8000).
 
-<img width="1470" height="956" alt="Screenshot 2026-05-30 at 2 57 26 PM" src="https://github.com/user-attachments/assets/08053e25-fb39-48c3-968d-da8bcf037672" />
+<img width="1468" height="885" alt="image" src="https://github.com/user-attachments/assets/b7c12b70-a2e6-4b28-b7da-ad0d8fb219d2" />
 
-<img width="1470" height="956" alt="Screenshot 2026-05-30 at 3 05 06 PM" src="https://github.com/user-attachments/assets/88ddc7a9-b210-4436-8d4f-a74c2b2e26dd" />
+<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/394263b1-ec23-4779-9751-194f0e4389e5" />
 
 
 The browser workspace is persistent across refreshes. It supports:
